@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebBanDoAn.Data;
 
@@ -11,9 +12,11 @@ using WebBanDoAn.Data;
 namespace WebBanDoAn.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260122021812_SeedFullData")]
+    partial class SeedFullData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,24 +63,6 @@ namespace WebBanDoAn.Migrations
                             CategoryID = 3,
                             CategoryName = "Combo",
                             Description = "Combo tiết kiệm"
-                        },
-                        new
-                        {
-                            CategoryID = 4,
-                            CategoryName = "Gà rán",
-                            Description = "Các món gà chiên giòn"
-                        },
-                        new
-                        {
-                            CategoryID = 5,
-                            CategoryName = "Pizza",
-                            Description = "Pizza các loại"
-                        },
-                        new
-                        {
-                            CategoryID = 6,
-                            CategoryName = "Tráng miệng",
-                            Description = "Bánh ngọt, kem"
                         });
                 });
 
@@ -116,50 +101,8 @@ namespace WebBanDoAn.Migrations
                         {
                             ComboID = 2,
                             ComboName = "Combo Gia Đình",
-                            Description = "2 Burger + 2 Gà rán  + 2 Nước",
+                            Description = "2 Burger + 2 Gà rán + 2 Nước",
                             Price = 180000.0
-                        },
-                        new
-                        {
-                            ComboID = 3,
-                            ComboName = "Combo Cặp Đôi",
-                            Description = "2 Burger + 2 Nước",
-                            Price = 190000.0
-                        },
-                        new
-                        {
-                            ComboID = 4,
-                            ComboName = "Combo Bố Con",
-                            Description = "2 Burger + 2 Gà rán + 2 Pizza  + 2 Nước",
-                            Price = 200000.0
-                        },
-                        new
-                        {
-                            ComboID = 5,
-                            ComboName = "Combo Đặc Biệt",
-                            Description = "2 Burger + 2 Gà rán + 2 Pizza + 2 Tráng Miệng + 2 Nước",
-                            Price = 220000.0
-                        },
-                        new
-                        {
-                            ComboID = 6,
-                            ComboName = "Combo Gà Rán",
-                            Description = "2 Gà rán + 1 Coca",
-                            Price = 170000.0
-                        },
-                        new
-                        {
-                            ComboID = 7,
-                            ComboName = "Combo Pizza",
-                            Description = "1 Pizza + 2 Nước",
-                            Price = 150000.0
-                        },
-                        new
-                        {
-                            ComboID = 8,
-                            ComboName = "Combo Sinh Viên",
-                            Description = "Burger + Nước + Khoai",
-                            Price = 160000.0
                         });
                 });
 
@@ -194,7 +137,7 @@ namespace WebBanDoAn.Migrations
                         new
                         {
                             OrderID = 1,
-                            OrderDate = new DateTime(2026, 1, 22, 9, 44, 9, 788, DateTimeKind.Local).AddTicks(578),
+                            OrderDate = new DateTime(2026, 1, 22, 9, 18, 11, 586, DateTimeKind.Local).AddTicks(58),
                             Status = "Đã giao",
                             TotalAmount = 95000.0,
                             UserId = 2
@@ -202,26 +145,10 @@ namespace WebBanDoAn.Migrations
                         new
                         {
                             OrderID = 2,
-                            OrderDate = new DateTime(2026, 1, 22, 9, 44, 9, 788, DateTimeKind.Local).AddTicks(591),
+                            OrderDate = new DateTime(2026, 1, 22, 9, 18, 11, 586, DateTimeKind.Local).AddTicks(72),
                             Status = "Đang giao",
                             TotalAmount = 180000.0,
                             UserId = 3
-                        },
-                        new
-                        {
-                            OrderID = 3,
-                            OrderDate = new DateTime(2026, 1, 22, 9, 44, 9, 788, DateTimeKind.Local).AddTicks(593),
-                            Status = "Chưa giao",
-                            TotalAmount = 95000.0,
-                            UserId = 4
-                        },
-                        new
-                        {
-                            OrderID = 4,
-                            OrderDate = new DateTime(2026, 1, 22, 9, 44, 9, 788, DateTimeKind.Local).AddTicks(594),
-                            Status = "Đã giao",
-                            TotalAmount = 150000.0,
-                            UserId = 5
                         });
                 });
 
@@ -278,22 +205,6 @@ namespace WebBanDoAn.Migrations
                             OrderID = 2,
                             Quantity = 1,
                             UnitPrice = 180000.0
-                        },
-                        new
-                        {
-                            OrderDetailID = 4,
-                            OrderID = 3,
-                            ProductID = 6,
-                            Quantity = 2,
-                            UnitPrice = 48000.0
-                        },
-                        new
-                        {
-                            OrderDetailID = 5,
-                            ComboID = 4,
-                            OrderID = 4,
-                            Quantity = 1,
-                            UnitPrice = 150000.0
                         });
                 });
 
@@ -374,51 +285,6 @@ namespace WebBanDoAn.Migrations
                             Image = "pepsi.jpg",
                             Price = 15000.0,
                             ProductName = "Pepsi"
-                        },
-                        new
-                        {
-                            ProductID = 6,
-                            CategoryID = 4,
-                            Description = "Gà cay Hàn Quốc",
-                            Image = "ga_cay.jpg",
-                            Price = 48000.0,
-                            ProductName = "Gà rán cay"
-                        },
-                        new
-                        {
-                            ProductID = 7,
-                            CategoryID = 4,
-                            Description = "Gà rán giòn",
-                            Image = "ga_truyen_thong.jpg",
-                            Price = 45000.0,
-                            ProductName = "Gà rán truyền thống"
-                        },
-                        new
-                        {
-                            ProductID = 8,
-                            CategoryID = 5,
-                            Description = "Pizza hải sản phô mai",
-                            Image = "pizza_hai_san.jpg",
-                            Price = 120000.0,
-                            ProductName = "Pizza Hải Sản"
-                        },
-                        new
-                        {
-                            ProductID = 9,
-                            CategoryID = 5,
-                            Description = "Pizza bò nướng",
-                            Image = "pizza_bo.jpg",
-                            Price = 110000.0,
-                            ProductName = "Pizza Bò"
-                        },
-                        new
-                        {
-                            ProductID = 10,
-                            CategoryID = 6,
-                            Description = "Kem mát lạnh",
-                            Image = "kem_vani.jpg",
-                            Price = 20000.0,
-                            ProductName = "Kem Vani"
                         });
                 });
 
@@ -491,27 +357,6 @@ namespace WebBanDoAn.Migrations
                             FullName = "Trần Thị B",
                             GoogleID = "google_123456",
                             NumberPhone = "0922222222",
-                            Pass = "123456",
-                            Role = "Customer"
-                        },
-                        new
-                        {
-                            UserID = 4,
-                            Address = "Đà Nẵng",
-                            Email = "customer3@gmail.com",
-                            FullName = "Lê Văn C",
-                            NumberPhone = "0933333333",
-                            Pass = "123456",
-                            Role = "Customer"
-                        },
-                        new
-                        {
-                            UserID = 5,
-                            Address = "Cần Thơ",
-                            Email = "customer4@gmail.com",
-                            FullName = "Phạm Thị D",
-                            GoogleID = "google_78910",
-                            NumberPhone = "0944444444",
                             Pass = "123456",
                             Role = "Customer"
                         });
