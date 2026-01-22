@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Ăn Nhanh Online</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Header ShopeeFood */
+        .sf-header {
+            background: #fff;
+            height: 70px;
+            border-bottom: 1px solid #ebedf0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+
+        .sf-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sf-logo {
+            color: #ee4d2d;
+            font-size: 26px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+            .sf-logo i {
+                font-size: 32px;
+                margin-right: 8px;
+            }
+
+        .sf-location {
+            padding: 8px 12px;
+            border: 1px solid #ebedf0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+            .sf-location:hover {
+                border-color: #ee4d2d;
+                color: #ee4d2d;
+            }
+
+        .sf-tabs {
+            display: flex;
+            gap: 32px;
+            margin-left: 20px;
+        }
+
+            .sf-tabs a {
+                color: #333;
+                font-weight: 500;
+                text-decoration: none;
+                position: relative;
+                padding: 24px 0 20px;
+            }
+
+                .sf-tabs a.active::after,
+                .sf-tabs a:hover::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 3px;
+                    background: #ee4d2d;
+                }
+
+        .sf-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .sf-search {
+            font-size: 22px;
+            color: #666;
+            cursor: pointer;
+        }
+
+            .sf-search:hover {
+                color: #ee4d2d;
+            }
+
+        .sf-login-btn {
+            padding: 8px 20px;
+            background: #ee4d2d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .sf-user {
+            font-weight: 500;
+            color: #ee4d2d;
+        }
+
+        .sf-spacer {
+            height: 70px;
+        }
+
+        @@media (max-width: 992px) {
+            .sf-tabs {
+                display: none;
+            }
+
+            .sf-left {
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Header -->
+    <header class="sf-header">
+        <div class="sf-container">
+            <!-- Left -->
+            <div class="d-flex align-items-center gap-4">
+                <a href="/" class="sf-logo">
+                    <i class="fas fa-utensils"></i> Ăn Nhanh
+                </a>
+
+                <!-- Dropdown tỉnh/thành -->
+                <div class="dropdown">
+                    <button class="sf-location dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <span>TP. HCM</span>
+                        <i class="fas fa-chevron-down ms-1"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">TP. HCM</a></li>
+                        <li><a class="dropdown-item" href="#">Hà Nội</a></li>
+                        <li><a class="dropdown-item" href="#">Đà Nẵng</a></li>
+                        <li><a class="dropdown-item" href="#">Cần Thơ</a></li>
+                        <li><a class="dropdown-item" href="#">Hải Phòng</a></li>
+                        <!-- Thêm tỉnh/thành khác nếu cần -->
+                    </ul>
+                </div>
+
+                <!-- Tabs danh mục (ẩn mobile) -->
+                <nav class="sf-tabs d-none d-lg-flex">
+                    <a href="#" class="active">Đồ ăn</a>
+                    <a href="#">Thực phẩm</a>
+                    <a href="#">Rượu bia</a>
+                    <a href="#">Hoa</a>
+                    <a href="#">Siêu thị</a>
+                    <a href="#">Thuốc</a>
+                    <a href="#">Thú cưng</a>
+                </nav>
+            </div>
+
+            <!-- Right -->
+            <div class="sf-right">
+                <i class="fas fa-search sf-search"></i>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="sf-user">
+                        Xin chào, @User.Identity.Name!
+                        <a href="/Identity/Account/Logout" class="text-muted ms-2 small">(Đăng xuất)</a>
+                    </span>
+                }
+                else
+                {
+                    <a href="/Identity/Account/Login" class="sf-login-btn">Đăng nhập</a>
+                }
+
+                <img src="https://flagcdn.com/w40/vn.png" alt="VN" class="sf-flag">
+            </div>
+        </div>
+    </header>
+
+    <div class="sf-spacer"></div>
+
+    <main class="flex-grow-1">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="border-top footer text-muted mt-auto py-4 bg-dark text-white">
+        <div class="container text-center">
+            © @DateTime.Now.Year - Ăn Nhanh Online - <a href="/Home/Privacy" class="text-white">Chính sách bảo mật</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
